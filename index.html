@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Todo List</title>
+    <style>
+        ul{
+            list-style-type:none;
+        }
+        li:hover{
+         font-weight: bold; 
+         background:  #34bbc5;   
+         color: white;    
+        }
+        
+        .delete{
+            float: right;
+            cursor: pointer;
+        }
+        .delete:hover{
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+    <div class="in-container">
+     <h1 class="heading">Todo List</h1>
+     <input type="text" id="taskInput" class="input-text" placeholder="Add new task...">  <br>
+     <button class="add-btn" onclick="addTask()">+</button>
+     <ul class="taskList" id="taskList"></ul>
+    </div>
+    </div>
+    <script>
+        function addTask(){
+         var taskInput=document.getElementById("taskInput");
+         var taskList=document.getElementById("taskList");
+
+         if(taskInput.value.trim()===""){
+            window.alert('Pleas enter a task!');
+            return;
+         }
+       
+         var li= document.createElement("li");
+         li.textContent = taskInput.value;
+
+         var deleteButton =document.createElement("span");
+         deleteButton.className="delete";
+         deleteButton.textContent="🛇";
+         deleteButton.onclick=function(){
+            li.remove();
+         }
+         li.appendChild(deleteButton);
+        taskList.appendChild(li);
+        taskInput.value="";
+         
+        }
+    </script>
+</body>
+</html>
